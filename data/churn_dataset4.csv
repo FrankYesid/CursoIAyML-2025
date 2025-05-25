@@ -1,0 +1,101 @@
+Fecha,Genero,Edad,Medio_de_pago,Tipo_de_tarjeta,Compras_ultimos_6_meses,Provincia,Monto_Compra,Categoria,Web
+2024-04-04,Femenino,67,Tarjeta de débito,American Express,True,Tierra del Fuego,880486,Ropa,mercadolibre.com.ar
+2023-06-25,Masculino,48,Tarjeta de crédito,Mastercard,False,Córdoba,739447,Electrónicos,fravega.com
+2024-01-28,Masculino,29,Tarjeta de crédito,Visa,False,Misiones,183404,Hogar,tiendabna.com.ar
+2023-10-30,Otro,24,Tarjeta de débito,Visa,True,Jujuy,860619,Otros,tiendabna.com.ar
+2023-06-25,Otro,32,Transferencia bancaria,Maestro,False,Catamarca,702336,Ropa,mercadolibre.com.ar
+2023-06-14,Otro,34,Transferencia bancaria,Maestro,True,Formosa,736508,Electrónicos,tiendabna.com.ar
+2023-11-24,Masculino,43,Tarjeta de crédito,American Express,True,Buenos Aires,6359,Juguetes,dafity.com
+2023-04-28,Otro,25,Transferencia bancaria,Naranja,True,Tierra del Fuego,954434,Hogar,musimundo.com
+2023-07-28,Otro,67,Tarjeta de débito,American Express,True,Chubut,535091,Electrónicos,tiendabna.com.ar
+2023-08-13,Masculino,57,QR,American Express,False,San Luis,177883,Ropa,tiendabna.com.ar
+2023-11-17,Otro,53,Transferencia bancaria,Mastercard,True,Santa Fe,460436,Hogar,tiendabna.com.ar
+2024-03-10,Otro,70,QR,Visa,False,Entre Ríos,137895,Juguetes,fravega.com
+2023-08-20,Otro,22,Tarjeta de débito,Mastercard,False,Buenos Aires,466586,Juguetes,musimundo.com
+2023-08-14,Otro,41,Tarjeta de débito,Visa,True,Chaco,120615,Ropa,musimundo.com
+2023-07-13,Masculino,61,Tarjeta de débito,American Express,False,San Juan,947002,Otros,musimundo.com
+2023-05-26,Femenino,68,Tarjeta de débito,Visa,False,Entre Ríos,104863,Ropa,mercadolibre.com.ar
+2023-05-02,Masculino,27,Tarjeta de débito,Maestro,True,Chaco,494007,Otros,mercadolibre.com.ar
+2023-10-07,Masculino,46,QR,Naranja,False,San Luis,876566,Ropa,tiendabna.com.ar
+2024-02-21,Masculino,51,Transferencia bancaria,Naranja,False,La Pampa,154045,Deportes,tiendabna.com.ar
+2023-07-16,Otro,37,QR,American Express,False,La Pampa,343566,Hogar,musimundo.com
+2024-03-23,Otro,69,Tarjeta de débito,Maestro,False,La Rioja,402315,Otros,dafity.com
+2023-07-14,Otro,18,Tarjeta de crédito,Naranja,False,Córdoba,559373,Otros,fravega.com
+2023-06-12,Femenino,48,QR,Mastercard,True,La Pampa,758699,Ropa,tiendabna.com.ar
+2023-11-03,Otro,18,Tarjeta de débito,Mastercard,False,Chaco,246050,Ropa,mercadolibre.com.ar
+2023-07-29,Femenino,63,Transferencia bancaria,Mastercard,False,Catamarca,84038,Belleza,dafity.com
+2023-06-15,Masculino,67,Transferencia bancaria,Maestro,True,Misiones,187878,Deportes,fravega.com
+2023-09-22,Femenino,59,Tarjeta de débito,American Express,True,Formosa,753520,Juguetes,dafity.com
+2024-02-25,Masculino,43,Tarjeta de débito,Visa,True,Córdoba,624009,Electrónicos,mercadolibre.com.ar
+2024-01-01,Otro,32,Transferencia bancaria,Visa,False,Tierra del Fuego,773366,Hogar,musimundo.com
+2023-08-09,Femenino,26,QR,American Express,True,Neuquén,767382,Otros,mercadolibre.com.ar
+2023-11-17,Otro,20,QR,Visa,False,San Luis,970413,Ropa,dafity.com
+2023-05-30,Masculino,18,Tarjeta de débito,Visa,False,Misiones,641109,Deportes,musimundo.com
+2023-07-27,Otro,34,Tarjeta de crédito,Mastercard,False,Misiones,226366,Deportes,fravega.com
+2023-11-28,Otro,22,Tarjeta de crédito,Visa,True,Tucumán,588683,Juguetes,dafity.com
+2023-07-27,Otro,36,Tarjeta de crédito,Naranja,True,Santa Fe,955714,Electrónicos,tiendabna.com.ar
+2024-02-29,Otro,27,Transferencia bancaria,Visa,False,San Luis,269389,Hogar,musimundo.com
+2023-09-13,Masculino,45,QR,Mastercard,False,La Rioja,525257,Electrónicos,fravega.com
+2023-10-08,Femenino,32,Tarjeta de débito,Mastercard,False,La Pampa,419960,Electrónicos,tiendabna.com.ar
+2023-10-18,Femenino,51,Transferencia bancaria,American Express,False,Catamarca,710623,Belleza,musimundo.com
+2024-02-26,Femenino,54,Transferencia bancaria,Maestro,False,Buenos Aires,335846,Hogar,fravega.com
+2023-05-08,Femenino,18,QR,Mastercard,False,Córdoba,445649,Belleza,dafity.com
+2023-10-22,Otro,26,QR,Maestro,False,Formosa,346725,Juguetes,mercadolibre.com.ar
+2023-11-04,Femenino,49,QR,Naranja,True,Corrientes,615731,Deportes,musimundo.com
+2023-12-22,Masculino,59,Tarjeta de débito,Mastercard,False,Tucumán,634759,Belleza,dafity.com
+2023-08-28,Otro,65,Transferencia bancaria,Visa,True,Santiago del Estero,726943,Belleza,tiendabna.com.ar
+2023-07-17,Femenino,61,QR,American Express,False,San Juan,144901,Otros,musimundo.com
+2023-11-26,Femenino,31,Tarjeta de débito,Naranja,True,Santiago del Estero,837150,Juguetes,musimundo.com
+2023-12-06,Masculino,35,Tarjeta de crédito,Mastercard,False,Santa Fe,763184,Electrónicos,mercadolibre.com.ar
+2023-10-29,Otro,58,Tarjeta de crédito,Naranja,True,Catamarca,939116,Juguetes,mercadolibre.com.ar
+2023-06-03,Femenino,42,Transferencia bancaria,Maestro,False,Mendoza,28536,Hogar,musimundo.com
+2023-05-18,Masculino,62,Tarjeta de débito,Maestro,False,Chaco,610116,Juguetes,dafity.com
+2023-04-28,Masculino,53,QR,Mastercard,True,Tierra del Fuego,80155,Belleza,fravega.com
+2024-04-18,Femenino,55,QR,Maestro,True,San Luis,463627,Juguetes,mercadolibre.com.ar
+2023-11-01,Otro,19,QR,Mastercard,False,Chubut,235633,Deportes,fravega.com
+2024-01-18,Femenino,23,Tarjeta de crédito,Naranja,True,Formosa,436593,Otros,mercadolibre.com.ar
+2024-01-24,Masculino,48,Tarjeta de crédito,Visa,True,Tucumán,512486,Otros,fravega.com
+2023-04-28,Otro,69,Tarjeta de débito,Visa,False,Buenos Aires,23405,Belleza,dafity.com
+2023-11-01,Femenino,49,QR,Maestro,False,Chaco,189549,Juguetes,tiendabna.com.ar
+2023-07-06,Otro,56,QR,American Express,False,Chubut,736333,Ropa,musimundo.com
+2023-07-24,Otro,46,Transferencia bancaria,American Express,False,Chaco,611390,Deportes,fravega.com
+2023-11-20,Masculino,63,Transferencia bancaria,Maestro,True,Corrientes,833310,Deportes,tiendabna.com.ar
+2023-10-15,Masculino,25,Transferencia bancaria,Maestro,False,San Juan,598072,Hogar,tiendabna.com.ar
+2023-05-20,Otro,62,Tarjeta de débito,Mastercard,False,Santa Fe,829715,Ropa,tiendabna.com.ar
+2024-03-29,Femenino,56,Tarjeta de débito,Naranja,True,Chaco,756740,Deportes,tiendabna.com.ar
+2024-02-14,Otro,60,Tarjeta de crédito,Mastercard,False,Catamarca,237732,Otros,fravega.com
+2023-12-26,Femenino,22,Tarjeta de crédito,American Express,True,Tierra del Fuego,804886,Belleza,tiendabna.com.ar
+2023-10-28,Masculino,26,QR,Mastercard,True,Neuquén,678115,Deportes,musimundo.com
+2023-04-30,Otro,27,Transferencia bancaria,Naranja,False,Chubut,754246,Otros,mercadolibre.com.ar
+2023-09-02,Femenino,18,Tarjeta de crédito,American Express,True,Formosa,542907,Hogar,fravega.com
+2023-05-28,Masculino,49,Transferencia bancaria,American Express,True,La Rioja,327547,Electrónicos,mercadolibre.com.ar
+2023-09-19,Masculino,56,Tarjeta de crédito,American Express,True,Formosa,866398,Electrónicos,mercadolibre.com.ar
+2024-03-28,Otro,33,Tarjeta de débito,Mastercard,True,Salta,597083,Otros,dafity.com
+2023-12-16,Femenino,65,QR,Mastercard,True,La Rioja,2421,Hogar,dafity.com
+2024-04-12,Masculino,29,Tarjeta de débito,Mastercard,False,Entre Ríos,425813,Juguetes,mercadolibre.com.ar
+2023-10-07,Femenino,43,QR,Naranja,False,La Rioja,738999,Otros,musimundo.com
+2023-07-30,Otro,70,Tarjeta de crédito,Maestro,True,Mendoza,774370,Hogar,fravega.com
+2023-11-27,Masculino,19,Tarjeta de crédito,Maestro,True,Salta,295490,Belleza,musimundo.com
+2023-09-05,Masculino,40,QR,Visa,False,La Rioja,637026,Juguetes,fravega.com
+2023-12-17,Masculino,33,Transferencia bancaria,Naranja,True,Buenos Aires,489058,Deportes,musimundo.com
+2023-09-16,Masculino,25,Transferencia bancaria,Maestro,False,La Pampa,491546,Juguetes,fravega.com
+2023-05-30,Femenino,60,Transferencia bancaria,American Express,True,Chubut,909982,Otros,musimundo.com
+2023-09-25,Otro,70,QR,Visa,True,Catamarca,567885,Electrónicos,musimundo.com
+2024-02-17,Femenino,51,Tarjeta de débito,American Express,False,Río Negro,973396,Electrónicos,mercadolibre.com.ar
+2024-01-27,Femenino,34,QR,Visa,False,Neuquén,10485,Ropa,musimundo.com
+2023-11-24,Femenino,44,Tarjeta de crédito,American Express,False,Misiones,763090,Ropa,musimundo.com
+2023-11-17,Femenino,41,Transferencia bancaria,Mastercard,False,Mendoza,701528,Deportes,mercadolibre.com.ar
+2023-11-10,Femenino,26,Transferencia bancaria,Mastercard,False,Buenos Aires,357997,Otros,fravega.com
+2024-04-11,Masculino,19,QR,Mastercard,True,Entre Ríos,337453,Otros,musimundo.com
+2023-12-20,Otro,61,Tarjeta de débito,Naranja,False,Misiones,720256,Hogar,dafity.com
+2023-11-06,Femenino,70,QR,Maestro,True,Córdoba,166718,Otros,fravega.com
+2024-01-23,Femenino,50,Transferencia bancaria,Naranja,False,Catamarca,918911,Electrónicos,dafity.com
+2024-03-28,Femenino,52,Tarjeta de débito,Visa,False,Río Negro,824300,Electrónicos,mercadolibre.com.ar
+2024-02-06,Otro,18,Tarjeta de crédito,Mastercard,False,Santiago del Estero,207897,Deportes,musimundo.com
+2023-11-26,Femenino,47,QR,Mastercard,True,Córdoba,14137,Electrónicos,mercadolibre.com.ar
+2024-01-14,Masculino,23,Tarjeta de débito,Visa,False,Córdoba,401338,Deportes,fravega.com
+2023-06-05,Otro,45,QR,Visa,True,Entre Ríos,226855,Deportes,fravega.com
+2023-09-24,Femenino,26,QR,Naranja,False,Tucumán,883950,Deportes,tiendabna.com.ar
+2024-04-24,Otro,28,Tarjeta de débito,Maestro,True,Salta,734787,Otros,tiendabna.com.ar
+2023-11-30,Masculino,50,Transferencia bancaria,American Express,True,Río Negro,854394,Belleza,fravega.com
+2024-03-05,Masculino,49,Tarjeta de crédito,Visa,False,Neuquén,816671,Electrónicos,mercadolibre.com.ar
