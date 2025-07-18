@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Calidad de Datos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Full viewport height */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .section-title {
+            border-left: 8px solid #3b82f6;
+            /* Blue left border for titles */
+            padding-left: 1rem;
+        }
+
+        .quiz-option label {
+            display: block;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background-color: #e2e8f0;
+            /* Light gray for options */
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-option label:hover {
+            background-color: #cbd5e1;
+            /* Slightly darker on hover */
+        }
+
+        .quiz-option input[type="radio"]:checked+label {
+            background-color: #bfdbfe;
+            /* Light blue when checked */
+            border: 1px solid #60a5fa;
+        }
+
+        .quiz-option.correct label {
+            background-color: #d1fae5;
+            /* Light green for correct answer */
+            border: 1px solid #34d399;
+        }
+
+        .quiz-option.incorrect label {
+            background-color: #fee2e2;
+            /* Light red for incorrect answer */
+            border: 1px solid #ef4444;
+        }
+
+        .quiz-feedback {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .quiz-feedback.correct {
+            color: #10b981;
+            /* Green text for correct feedback */
+        }
+
+        .quiz-feedback.incorrect {
+            color: #ef4444;
+            /* Red text for incorrect feedback */
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+    <main class="container mx-auto p-6 bg-white rounded-lg shadow-xl max-w-2xl w-full">
+        <!-- Cuestionario de Calidad de Datos -->
+        <section id="quiz" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 section-title">Cuestionario de Calidad de Datos</h2>
+            <p class="text-lg leading-relaxed mb-6">
+                ¡Pon a prueba tus conocimientos sobre la calidad de datos! Selecciona la respuesta que consideres
+                correcta para cada pregunta y luego haz clic en "Ver Resultados" para obtener tu calificación.
+            </p>
+
+            <form id="quiz-form" class="bg-gray-50 p-8 rounded-lg shadow-md">
+                <!-- Pregunta 1 -->
+                <div class="mb-8">
+                    <p class="text-xl font-semibold text-gray-800 mb-4">1. ¿Qué dimensión de la calidad de datos se
+                        refiere a la ausencia de valores faltantes en un conjunto de datos?</p>
+                    <div class="space-y-3">
+                        <div class="quiz-option">
+                            <input type="radio" id="q1_option1" name="q1" value="a" class="hidden">
+                            <label for="q1_option1">a) Precisión</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q1_option2" name="q1" value="b" class="hidden">
+                            <label for="q1_option2">b) Consistencia</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q1_option3" name="q1" value="c" class="hidden">
+                            <label for="q1_option3">c) Completitud</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q1_option4" name="q1" value="d" class="hidden">
+                            <label for="q1_option4">d) Oportunidad</label>
+                        </div>
+                    </div>
+                    <div id="q1-feedback" class="quiz-feedback"></div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="mb-8">
+                    <p class="text-xl font-semibold text-gray-800 mb-4">2. Si los datos de un cliente muestran
+                        diferentes direcciones en dos sistemas distintos de la misma empresa, ¿qué problema de calidad
+                        de datos se está presentando?</p>
+                    <div class="space-y-3">
+                        <div class="quiz-option">
+                            <input type="radio" id="q2_option1" name="q2" value="a" class="hidden">
+                            <label for="q2_option1">a) Unicidad</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q2_option2" name="q2" value="b" class="hidden">
+                            <label for="q2_option2">b) Validez</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q2_option3" name="q2" value="c" class="hidden">
+                            <label for="q2_option3">c) Consistencia</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q2_option4" name="q2" value="d" class="hidden">
+                            <label for="q2_option4">d) Precisión</label>
+                        </div>
+                    </div>
+                    <div id="q2-feedback" class="quiz-feedback"></div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="mb-8">
+                    <p class="text-xl font-semibold text-gray-800 mb-4">3. ¿Cuál de los siguientes pasos NO forma parte
+                        del ciclo de gestión de la calidad de datos (Definir, Evaluar, Limpiar, Monitorear, Mejorar
+                        Continuamente)?</p>
+                    <div class="space-y-3">
+                        <div class="quiz-option">
+                            <input type="radio" id="q3_option1" name="q3" value="a" class="hidden">
+                            <label for="q3_option1">a) Definir</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q3_option2" name="q3" value="b" class="hidden">
+                            <label for="q3_option2">b) Almacenar</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q3_option3" name="q3" value="c" class="hidden">
+                            <label for="q3_option3">c) Limpiar</label>
+                        </div>
+                        <div class="quiz-option">
+                            <input type="radio" id="q3_option4" name="q3" value="d" class="hidden">
+                            <label for="q3_option4">d) Monitorear</label>
+                        </div>
+                    </div>
+                    <div id="q3-feedback" class="quiz-feedback"></div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                    <button type="button" id="submit-quiz"
+                        class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 flex-grow">
+                        Ver Resultados
+                    </button>
+                    <button type="button" id="reset-quiz"
+                        class="bg-gray-300 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-400 transition duration-300 flex-grow">
+                        Reiniciar Cuestionario
+                    </button>
+                </div>
+                <div id="quiz-score" class="text-2xl font-bold text-center mt-6 hidden"></div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quiz-form');
+            const submitButton = document.getElementById('submit-quiz');
+            const resetButton = document.getElementById('reset-quiz');
+            const quizScoreDiv = document.getElementById('quiz-score');
+
+            // Define las respuestas correctas para cada pregunta
+            const correctAnswers = {
+                q1: 'c', // Completitud
+                q2: 'c', // Consistencia
+                q3: 'b'  // Almacenar
+            };
+
+            // Función para verificar las respuestas
+            function checkAnswers() {
+                let score = 0;
+                const totalQuestions = Object.keys(correctAnswers).length;
+
+                // Deshabilita los botones de radio después de la verificación
+                const radioButtons = quizForm.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => radio.disabled = true);
+
+                for (const qKey in correctAnswers) {
+                    const selectedOption = quizForm.querySelector(`input[name="${qKey}"]:checked`);
+                    const feedbackDiv = document.getElementById(`${qKey}-feedback`);
+                    quizForm.querySelectorAll(`input[name="${qKey}"]`).forEach(input => {
+                        input.closest('.quiz-option').classList.remove('correct', 'incorrect');
+                    });
+
+                    if (selectedOption) {
+                        if (selectedOption.value === correctAnswers[qKey]) {
+                            score++;
+                            selectedOption.closest('.quiz-option').classList.add('correct');
+                            feedbackDiv.textContent = '¡Correcto!';
+                            feedbackDiv.className = 'quiz-feedback correct';
+                        } else {
+                            selectedOption.closest('.quiz-option').classList.add('incorrect');
+                            // Muestra la respuesta correcta si la seleccionada es incorrecta
+                            const correctAnswerElement = quizForm.querySelector(`input[name="${qKey}"][value="${correctAnswers[qKey]}"]`);
+                            if (correctAnswerElement) {
+                                correctAnswerElement.closest('.quiz-option').classList.add('correct');
+                            }
+                            feedbackDiv.textContent = 'Incorrecto. La respuesta correcta es: ' + correctAnswers[qKey].toUpperCase();
+                            feedbackDiv.className = 'quiz-feedback incorrect';
+                        }
+                    } else {
+                        // Si no se selecciona ninguna opción, también se marca como incorrecta
+                        const correctAnswerElement = quizForm.querySelector(`input[name="${qKey}"][value="${correctAnswers[qKey]}"]`);
+                        if (correctAnswerElement) {
+                            correctAnswerElement.closest('.quiz-option').classList.add('correct');
+                        }
+                        feedbackDiv.textContent = 'No seleccionaste una respuesta. La respuesta correcta es: ' + correctAnswers[qKey].toUpperCase();
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                    }
+                }
+
+                quizScoreDiv.textContent = `Tu puntuación: ${score} de ${totalQuestions}`;
+                quizScoreDiv.classList.remove('hidden');
+            }
+
+            // Función para reiniciar el cuestionario
+            function resetQuiz() {
+                quizForm.reset(); // Resetea la selección de los radio buttons
+                quizScoreDiv.classList.add('hidden'); // Oculta la puntuación
+
+                // Limpia el feedback y las clases de color
+                const feedbackDivs = quizForm.querySelectorAll('.quiz-feedback');
+                feedbackDivs.forEach(div => {
+                    div.textContent = '';
+                    div.className = 'quiz-feedback'; // Restablece las clases
+                });
+
+                const quizOptions = quizForm.querySelectorAll('.quiz-option');
+                quizOptions.forEach(option => {
+                    option.classList.remove('correct', 'incorrect');
+                });
+
+                // Habilita los botones de radio nuevamente
+                const radioButtons = quizForm.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => radio.disabled = false);
+            }
+
+            submitButton.addEventListener('click', checkAnswers);
+            resetButton.addEventListener('click', resetQuiz);
+        });
+    </script>
+</body>
+
+</html>

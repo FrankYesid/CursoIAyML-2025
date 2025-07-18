@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Calidad de Datos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            /* Light gray background */
+        }
+
+        .section-title {
+            border-left: 8px solid #3b82f6;
+            /* Blue left border for titles */
+            padding-left: 1rem;
+        }
+
+        .flowchart-step {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .flowchart-step.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .flowchart-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+
+        .flowchart-detail.active {
+            max-height: 200px;
+            /* Adjust as needed */
+            opacity: 1;
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e0e7ff;
+            /* Light blue track */
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #60a5fa;
+            /* Blue thumb */
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+            /* Darker blue on hover */
+        }
+
+        /* Table specific styles */
+        .data-quality-table th,
+        .data-quality-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            /* Light gray border */
+            text-align: left;
+            vertical-align: top;
+            /* Align content to top for multi-line examples */
+        }
+
+        .data-quality-table th {
+            background-color: #e0f2fe;
+            /* Light blue header */
+            font-weight: 600;
+            color: #1e40af;
+            /* Darker blue text */
+        }
+
+        .data-quality-table tr:hover {
+            background-color: #f0f9ff;
+            /* Lighter blue on hover */
+        }
+
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .example-table th,
+        .example-table td {
+            padding: 4px 8px;
+            border: 1px solid #cbd5e1;
+            /* Light gray border for inner tables */
+            text-align: left;
+        }
+
+        .highlight-problem {
+            background-color: #fee2e2;
+            /* Light red for problem */
+            font-weight: bold;
+        }
+
+        .highlight-correction {
+            background-color: #d1fae5;
+            /* Light green for correction */
+            font-weight: bold;
+        }
+
+        .application-step {
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .application-step.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .application-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+
+        .application-detail.active {
+            max-height: 300px;
+            /* Adjust as needed */
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-4xl font-bold mb-2 md:mb-0">Curso: Calidad de Datos</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#introduccion" class="hover:text-blue-200 transition duration-300">Introducción</a>
+                    </li>
+                    <li><a href="#dimensiones" class="hover:text-blue-200 transition duration-300">Dimensiones</a></li>
+                    <li><a href="#gestion" class="hover:text-blue-200 transition duration-300">Gestión</a></li>
+                    <li><a href="#aplicacion-alto-nivel" class="hover:text-blue-200 transition duration-300">Aplicación
+                            (Alto Nivel)</a></li>
+                    <li><a href="data-quality-application.html"
+                            class="hover:text-blue-200 transition duration-300">Aplicación Práctica</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 mt-8 bg-white rounded-lg shadow-xl">
+        <!-- Introducción a la Calidad de Datos -->
+        <section id="introduccion" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 section-title">1. Introducción a la Calidad de Datos</h2>
+            <p class="text-lg leading-relaxed mb-4">
+                La calidad de datos se refiere al estado de los datos en función de su idoneidad para cumplir con los
+                requisitos de uso previstos. Los datos de alta calidad son precisos, completos, consistentes, oportunos,
+                válidos y únicos. Es un pilar fundamental para la toma de decisiones informadas, la eficiencia operativa
+                y la confianza en los sistemas empresariales.
+            </p>
+            <p class="text-lg leading-relaxed mb-4">
+                En un mundo cada vez más impulsado por los datos, la calidad de estos se ha convertido en un
+                diferenciador clave. Los datos de baja calidad pueden llevar a errores costosos, oportunidades perdidas,
+                análisis incorrectos y una disminución de la confianza del cliente. Por el contrario, los datos de alta
+                calidad empoderan a las organizaciones para innovar, optimizar procesos y obtener una ventaja
+                competitiva.
+            </p>
+            <p class="text-lg leading-relaxed mb-4">
+                En esta página, exploraremos las dimensiones clave de la calidad de datos y el proceso de su gestión.
+                <!-- Para una inmersión más profunda en la aplicación práctica y ejemplos detallados, por favor, visita la
+                sección de <a href="data-quality-application.html"
+                    class="text-blue-600 hover:underline font-semibold">Aplicación Práctica</a>. -->
+            </p>
+            <p class="text-lg leading-relaxed">
+                <a href="https://www.ibm.com/think/topics/data-quality" target="_blank"
+                    class="text-blue-600 hover:underline">Fuente: IBM</a>,
+                <a href="https://www.astera.com/es/type/blog/data-quality/" target="_blank"
+                    class="text-blue-600 hover:underline">Fuente: Astera</a>
+            </p>
+        </section>
+
+        <!-- Dimensiones de la Calidad de Datos -->
+        <section id="dimensiones" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 section-title">2. Dimensiones de la Calidad de Datos</h2>
+            <p class="text-lg leading-relaxed mb-6">
+                La calidad de datos no es un concepto único, sino que se compone de varias dimensiones interrelacionadas
+                que describen diferentes aspectos de su idoneidad. Entender estas dimensiones es crucial para evaluar y
+                mejorar la calidad de los datos.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dimensión: Completitud -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Completitud (Completeness)</h3>
+                    <p class="text-md text-gray-700">
+                        Indica si todos los datos requeridos están presentes. ¿Hay valores faltantes en campos
+                        importantes?
+                    </p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Ejemplo: Un registro de cliente sin dirección de correo electrónico o número de teléfono.
+                    </p>
+                </div>
+                <!-- Dimensión: Consistencia -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Consistencia (Consistency)</h3>
+                    <p class="text-md text-gray-700">
+                        Asegura que los datos son uniformes en diferentes sistemas y a lo largo del tiempo. ¿Hay valores
+                        contradictorios para la misma entidad?
+                    </p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Ejemplo: Un cliente con diferentes direcciones en dos bases de datos distintas.
+                    </p>
+                </div>
+                <!-- Dimensión: Precisión -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Precisión (Accuracy)</h3>
+                    <p class="text-md text-gray-700">
+                        Determina si los datos reflejan la realidad. ¿Son los valores correctos y veraces?
+                    </p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Ejemplo: Un registro de empleado con un salario incorrecto.
+                    </p>
+                </div>
+                <!-- Dimensión: Oportunidad -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Oportunidad (Timeliness)</h3>
+                    <p class="text-md text-gray-700">
+                        Se refiere a qué tan actualizados están los datos. ¿Están los datos disponibles cuando se
+                        necesitan?
+                    </p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Ejemplo: Precios de productos que no se han actualizado después de un cambio.
+                    </p>
+                </div>
+                <!-- Dimensión: Unicidad -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Unicidad (Uniqueness)</h3>
+                    <p class="text-md text-gray-700">
+                        Asegura que no hay duplicados de la misma entidad. ¿Existen múltiples registros para el mismo
+                        cliente o producto?
+                    </p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Ejemplo: Dos o más registros de clientes para la misma persona en la base de datos.
+                    </p>
+                </div>
+                <!-- Dimensión: Validez -->
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">Validez (Validity)</h3>
+                    <p class="text-md text-gray-700">
+                        Verifica si los datos cumplen con el formato, tipo y rango definidos. ¿Los datos se ajustan a
+                        las reglas de negocio?
+                    </p>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Ejemplo: Un campo de fecha con un formato incorrecto (e.g., "32/01/2023").
+                    </p>
+                </div>
+            </div>
+            <p class="text-lg leading-relaxed mt-6">
+                <a href="https://www.montecarlodata.com/blog-6-data-quality-dimensions-examples/" target="_blank"
+                    class="text-blue-600 hover:underline">Fuente: Monte Carlo Data</a>,
+                <a href="https://medium.com/@romina.elena.mendez/data-quality-a8d3144bedb2" target="_blank"
+                    class="text-blue-600 hover:underline">Fuente: Romina Elena Mendez (Medium)</a>
+            </p>
+
+            <!-- Tabla de Ejemplos Gráficos de Calidad de Datos -->
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10 section-title">Ejemplos Gráficos por Dimensión</h3>
+            <p class="text-lg leading-relaxed mb-6">
+                A continuación, se presenta una tabla con ejemplos concretos para cada dimensión de la calidad de datos,
+                ilustrando problemas comunes y cómo se verían los datos corregidos.
+            </p>
+
+            <div class="overflow-x-auto rounded-lg shadow-lg">
+                <table class="min-w-full bg-white data-quality-table">
+                    <thead>
+                        <tr>
+                            <th class="py-3 px-4 border-b">Dimensión</th>
+                            <th class="py-3 px-4 border-b">Descripción del Problema</th>
+                            <th class="py-3 px-4 border-b">Datos Originales (Ejemplo)</th>
+                            <th class="py-3 px-4 border-b">Datos Corregidos (Ejemplo)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Completitud</strong></td>
+                            <td>Faltan valores en campos obligatorios.</td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>001</td>
+                                            <td>Ana</td>
+                                            <td class="highlight-problem"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>001</td>
+                                            <td>Ana</td>
+                                            <td class="highlight-correction">ana@ejemplo.com</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Consistencia</strong></td>
+                            <td>Valores contradictorios para la misma entidad en diferentes registros o sistemas.</td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>Ciudad</th>
+                                            <th>País</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cliente_A</td>
+                                            <td class="highlight-problem">Madrid</td>
+                                            <td class="highlight-problem">España</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cliente_A</td>
+                                            <td class="highlight-problem">Madr</td>
+                                            <td class="highlight-problem">ES</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>Ciudad</th>
+                                            <th>País</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cliente_A</td>
+                                            <td class="highlight-correction">Madrid</td>
+                                            <td class="highlight-correction">España</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cliente_A</td>
+                                            <td class="highlight-correction">Madrid</td>
+                                            <td class="highlight-correction">España</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Precisión</strong></td>
+                            <td>Los datos no reflejan la realidad o son incorrectos.</td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Laptop</td>
+                                            <td class="highlight-problem">150.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-xs text-gray-500 mt-1">(Debería ser 1500.00)</p>
+                            </td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Laptop</td>
+                                            <td class="highlight-correction">1500.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Oportunidad</strong></td>
+                            <td>Los datos no están actualizados o disponibles a tiempo.</td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Acción</th>
+                                            <th>Último_Precio</th>
+                                            <th>Fecha_Actualización</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GOOG</td>
+                                            <td>100.00</td>
+                                            <td class="highlight-problem">2023-01-01</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-xs text-gray-500 mt-1">(Precio actual 150.00)</p>
+                            </td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Acción</th>
+                                            <th>Último_Precio</th>
+                                            <th>Fecha_Actualización</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GOOG</td>
+                                            <td class="highlight-correction">150.00</td>
+                                            <td class="highlight-correction">2025-07-17</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unicidad</strong></td>
+                            <td>Existen registros duplicados para la misma entidad.</td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="highlight-problem">002</td>
+                                            <td class="highlight-problem">Juan Pérez</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="highlight-problem">003</td>
+                                            <td class="highlight-problem">Juan Perez</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-xs text-gray-500 mt-1">(Misma persona)</p>
+                            </td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="highlight-correction">002</td>
+                                            <td class="highlight-correction">Juan Pérez</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-xs text-gray-500 mt-1">(Registro unificado)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Validez</strong></td>
+                            <td>Los datos no cumplen con el formato, tipo o rango definidos.</td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Campo</th>
+                                            <th>Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Fecha_Nacimiento</td>
+                                            <td class="highlight-problem">30/Febrero/1990</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-xs text-gray-500 mt-1">(Fecha inválida)</p>
+                            </td>
+                            <td>
+                                <table class="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Campo</th>
+                                            <th>Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Fecha_Nacimiento</td>
+                                            <td class="highlight-correction">1990-02-28</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-xs text-gray-500 mt-1">(Formato y fecha válidos)</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Gestión de la Calidad de Datos (Diagrama de Flujo Interactivo) -->
+        <section id="gestion" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 section-title">3. Gestión de la Calidad de Datos</h2>
+            <p class="text-lg leading-relaxed mb-6">
+                La gestión de la calidad de datos es un proceso continuo que asegura que los datos sean adecuados para
+                su propósito. Aquí te presentamos un diagrama de flujo interactivo basado en el mapa mental de
+                Databricks, donde puedes hacer clic en cada paso para obtener más detalles.
+            </p>
+
+            <div class="flex flex-col items-center space-y-8">
+                <!-- Paso 1: Definir -->
+                <div id="step-definir"
+                    class="flowchart-step bg-blue-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-2">1. Definir</h3>
+                    <p class="text-md text-blue-700">Establecer qué significa "calidad" para tus datos.</p>
+                    <div class="flowchart-detail mt-4 p-3 bg-blue-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> En esta etapa, se establecen los estándares de calidad de datos,
+                            las métricas y los umbrales. Se definen las reglas de negocio y los requisitos para cada
+                            conjunto de datos, asegurando que todos los stakeholders comprendan lo que se espera de los
+                            datos.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-blue-600">↓</div>
+
+                <!-- Paso 2: Evaluar -->
+                <div id="step-evaluar"
+                    class="flowchart-step bg-blue-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-2">2. Evaluar</h3>
+                    <p class="text-md text-blue-700">Medir la calidad actual de los datos.</p>
+                    <div class="flowchart-detail mt-4 p-3 bg-blue-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Se utilizan herramientas y técnicas de perfilado de datos para
+                            identificar problemas de calidad. Se comparan los datos existentes con los estándares
+                            definidos en la etapa de "Definir" para encontrar inconsistencias, valores faltantes,
+                            duplicados y errores.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-blue-600">↓</div>
+
+                <!-- Paso 3: Limpiar -->
+                <div id="step-limpiar"
+                    class="flowchart-step bg-blue-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-2">3. Limpiar</h3>
+                    <p class="text-md text-blue-700">Corregir los problemas de calidad identificados.</p>
+                    <div class="flowchart-detail mt-4 p-3 bg-blue-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Esta fase implica la rectificación de los datos. Esto puede incluir
+                            la estandarización de formatos, la deduplicación de registros, la imputación de valores
+                            faltantes y la corrección de errores. Se pueden usar reglas automatizadas o intervención
+                            manual.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-blue-600">↓</div>
+
+                <!-- Paso 4: Monitorear -->
+                <div id="step-monitorear"
+                    class="flowchart-step bg-blue-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-2">4. Monitorear</h3>
+                    <p class="text-md text-blue-700">Mantener la calidad de los datos a lo largo del tiempo.</p>
+                    <div class="flowchart-detail mt-4 p-3 bg-blue-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Se implementan sistemas de monitoreo continuo para detectar
+                            desviaciones de la calidad de datos en tiempo real o de forma programada. Se establecen
+                            alertas y paneles de control para visualizar el estado de la calidad de los datos y actuar
+                            rápidamente ante nuevos problemas.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-blue-600">↓</div>
+
+                <!-- Paso 5: Mejorar Continuamente -->
+                <div id="step-mejorar"
+                    class="flowchart-step bg-blue-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-2">5. Mejorar Continuamente</h3>
+                    <p class="text-md text-blue-700">Ajustar procesos para prevenir futuros problemas.</p>
+                    <div class="flowchart-detail mt-4 p-3 bg-blue-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Basándose en los hallazgos del monitoreo, se revisan y ajustan los
+                            procesos de ingesta, transformación y almacenamiento de datos para abordar las causas raíz
+                            de los problemas de calidad. Esto es un ciclo iterativo de mejora.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-lg leading-relaxed mt-6">
+                <a href="https://www.databricks.com/discover/pages/data-quality-management" target="_blank"
+                    class="text-blue-600 hover:underline">Fuente: Databricks</a>
+                <br>
+                <a href="https://www.databricks.com/sites/default/files/2023-05/data-quality-mind-map-transparent-background%201.png?v=1684801002"
+                    target="_blank" class="text-blue-600 hover:underline">Mapa Mental de Referencia</a>
+            </p>
+        </section>
+
+        <!-- Aplicación de Calidad de Datos (Diagrama de Alto Nivel) -->
+        <section id="aplicacion-alto-nivel" class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 section-title">4. Aplicación de Calidad de Datos (Alto
+                Nivel)</h2>
+            <p class="text-lg leading-relaxed mb-6">
+                Llevar la calidad de datos de la teoría a la práctica implica una serie de pasos clave. Este diagrama
+                interactivo de alto nivel ilustra el ciclo de vida de la aplicación de la calidad de datos en una
+                organización. Haz clic en cada paso para obtener una breve descripción.
+            </p>
+
+            <div class="flex flex-col items-center space-y-8">
+                <!-- Paso A: Estrategia y Gobernanza -->
+                <div id="app-step-estrategia"
+                    class="application-step bg-emerald-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-2">1. Estrategia y Gobernanza</h3>
+                    <p class="text-md text-emerald-700">Definir el marco y los objetivos.</p>
+                    <div class="application-detail mt-4 p-3 bg-emerald-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Establece la visión de la calidad de datos, define roles y
+                            responsabilidades (gobernanza), y alinea los objetivos de calidad con las metas estratégicas
+                            del negocio. Es el punto de partida para cualquier iniciativa de calidad de datos.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-emerald-600">↓</div>
+
+                <!-- Paso B: Evaluación y Perfilado -->
+                <div id="app-step-evaluacion"
+                    class="application-step bg-emerald-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-2">2. Evaluación y Perfilado</h3>
+                    <p class="text-md text-emerald-700">Diagnosticar el estado actual de los datos.</p>
+                    <div class="application-detail mt-4 p-3 bg-emerald-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Analiza los datos existentes para identificar problemas de calidad
+                            (completitud, precisión, etc.). Utiliza herramientas de perfilado para obtener una visión
+                            detallada de la salud de tus datos y sus anomalías.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-emerald-600">↓</div>
+
+                <!-- Paso C: Limpieza y Transformación -->
+                <div id="app-step-limpieza"
+                    class="application-step bg-emerald-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-2">3. Limpieza y Transformación</h3>
+                    <p class="text-md text-emerald-700">Corregir y estandarizar los datos.</p>
+                    <div class="application-detail mt-4 p-3 bg-emerald-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Aplica reglas y procesos para corregir errores, eliminar
+                            duplicados, estandarizar formatos y enriquecer los datos. Este paso busca mejorar
+                            activamente la calidad de los datos identificados como problemáticos.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-emerald-600">↓</div>
+
+                <!-- Paso D: Monitoreo y Control -->
+                <div id="app-step-monitoreo"
+                    class="application-step bg-emerald-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-2">4. Monitoreo y Control</h3>
+                    <p class="text-md text-emerald-700">Mantener la calidad de forma continua.</p>
+                    <div class="application-detail mt-4 p-3 bg-emerald-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Implementa sistemas para supervisar la calidad de datos de forma
+                            continua. Esto incluye la definición de métricas, la creación de paneles de control y la
+                            configuración de alertas para detectar y prevenir nuevos problemas de calidad.</p>
+                    </div>
+                </div>
+
+                <!-- Flecha hacia abajo -->
+                <div class="text-4xl text-emerald-600">↓</div>
+
+                <!-- Paso E: Mejora Continua y Cultura -->
+                <div id="app-step-mejora"
+                    class="application-step bg-emerald-100 p-6 rounded-lg shadow-md w-full max-w-md text-center">
+                    <h3 class="text-2xl font-semibold text-emerald-800 mb-2">5. Mejora Continua y Cultura</h3>
+                    <p class="text-md text-emerald-700">Integrar la calidad en el ADN de la organización.</p>
+                    <div class="application-detail mt-4 p-3 bg-emerald-50 rounded-md text-left text-gray-700">
+                        <p><strong>Detalle:</strong> Fomenta una cultura donde la calidad de datos es una
+                            responsabilidad compartida. Se revisan los procesos, se implementan lecciones aprendidas y
+                            se busca constantemente optimizar las prácticas para asegurar la sostenibilidad de la
+                            calidad de datos.</p>
+                    </div>
+                </div>
+            </div>
+            <p class="text-lg leading-relaxed mt-6">
+                Para más detalles sobre la aplicación práctica, consulta la sección <a
+                    href="Cuestionario.html" class="text-blue-600 hover:underline font-semibold">Aplicación
+                    Práctica</a>.
+            </p>
+        </section>
+    </main>
+
+    <!-- Botón Volver al Inicio -->
+    <button id="back-to-top"
+        class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 hidden">
+        ↑ Volver al Inicio
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center">
+        <p>&copy; 2025 Curso de Calidad de Datos. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // JavaScript para la interactividad del diagrama de flujo (Gestión)
+        document.addEventListener('DOMContentLoaded', () => {
+            const flowchartSteps = document.querySelectorAll('.flowchart-step');
+            flowchartSteps.forEach(step => {
+                step.addEventListener('click', () => {
+                    step.classList.toggle('active');
+                    const detail = step.querySelector('.flowchart-detail');
+                    if (detail) {
+                        detail.classList.toggle('active');
+                    }
+                });
+            });
+
+            // JavaScript para la interactividad del diagrama de Aplicación (Alto Nivel)
+            const applicationSteps = document.querySelectorAll('.application-step');
+            applicationSteps.forEach(step => {
+                step.addEventListener('click', () => {
+                    step.classList.toggle('active');
+                    const detail = step.querySelector('.application-detail');
+                    if (detail) {
+                        detail.classList.toggle('active');
+                    }
+                });
+            });
+
+            // JavaScript para el botón "Volver al Inicio"
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Muestra el botón después de 300px de scroll
+                    backToTopButton.classList.remove('hidden');
+                } else {
+                    backToTopButton.classList.add('hidden');
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Desplazamiento suave
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
